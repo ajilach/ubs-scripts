@@ -1,39 +1,31 @@
 # ubs-scripts
 
-Scripts for checking and fixing UBS AEM Adaptive Form packages.
+Scripts for UBS AEM Adaptive Form packages.
 
-| Script | What it does |
-|---|---|
-| `check_form_features.py` | Reports which agreed features each package has. Changes nothing. |
-| `fix_form_features.py` | Enables the missing features and writes fixed copies of the packages. |
+## fix_form_features.py
 
-Typical workflow: export the packages from AEM, run the check, run the fix into a new folder,
-run the check again on that folder, then install the fixed packages in AEM.
-
-```bash
-python3 check_form_features.py exported/
-python3 fix_form_features.py exported/ --out fixed/
-python3 check_form_features.py fixed/
-```
-
-## check_form_features.py
-
-Reads exported AEM form packages (ZIP files) and checks that each form has the agreed
-features enabled. The script only reads the packages and never changes them.
+Checks exported AEM form packages (ZIP files) for the agreed features, fixes the missing
+ones, writes fixed copies, and prints a report of what was already there and what was fixed.
+The input ZIPs are never modified.
 
 ### Requirements
 
-Python 3.8 or newer. Standard library only, nothing to install.
+Python 3.8 or newer. One file, standard library only, nothing to install.
 
-### What it checks
+### Features
 
-| Column | Passes when |
-|---|---|
-| Redacto DoR | The form metadata has `redactoSummary="true"` (UBS properties: "Activates Redacto Summary for this form"). |
-| HTML preview/summary | The form has a `summaryPanel` step containing the summary component `summaryComponent`. |
-| Save as draft | The form metadata `menuOptions` contains `ajila-forms-ubs-menu-option-save` (UBS properties: "Save as draft"). |
-| Print incomplete | The form metadata has `printPartialMode="true"` (UBS properties: "Print partially" = "Active"). Required on Germany forms only (`afforms_germany_all`); other forms show `n/a`. |
-| Show only input fields | The FormMetadata fragment (`afforms_global_fragmentlib/formmetadata`) is a step of the form. The Forms Workbench button "Show only input fields" writes to its field `txtShowOnlyInputFields`, which does not exist without the fragment. |
+| Feature | Target state | Fix |
+|---|---|---|
+| Redacto DoR | Form metadata `redactoSummary="true"` (UBS properties: "Activates Redacto Summary for this form"). | Sets the property. |
+| HTML preview/summary | A `summaryPanel` step containing the summary component. | Builds the step before the preview step, moves the form's own `doroptionsubs` and metadata controls into it, removes the old preview button and makes the Next button fill the summary. |
+| Save as draft | Form metadata `menuOptions` contains `ajila-forms-ubs-menu-option-save` (UBS properties: "Save as draft"). | Adds the option. |
+| Print incomplete | Form metadata `printPartialMode="true"` (UBS properties: "Print partially" = "Active"). Germany forms only (`afforms_germany_all`); other forms show `n/a`. | Sets the property. |
+| Show only input fields | The FormMetadata fragment (`afforms_global_fragmentlib/formmetadata`) is the first, hidden step. The Forms Workbench button "Show only input fields" writes to its field `txtShowOnlyInputFields`. | Inserts the step, or moves an existing one to the front and gives it the canonical attributes. |
+
+The summary step and the FormMetadata step are built the same way as the sweeps
+`summary-step-redacto` and `formmetadata-step` in ajila-forms-conversion-feedback. Only the
+affected attributes and nodes change; everything else in a package stays byte for byte the
+same.
 
 ### Usage
 
@@ -41,116 +33,57 @@ Export the packages from AEM Package Manager (Tools > Deployment > Packages, sel
 package, Download), then run:
 
 ```bash
-python3 check_form_features.py path/to/packages
-```
-
-The path can be a single ZIP or a folder; subfolders are searched too.
-
-Options:
-
-| Option | Effect |
-|---|---|
-| `--csv report.csv` | Also write the results to a CSV file. |
-| `--json` | Print JSON instead of the table. |
-
-### Output
-
-One row per package with `ok`, `MISSING`, `n/a` or `ERROR` (package could not be read) per
-check, followed by the details of what is missing for each failing package and a summary line:
-
-```
-Package       Redacto DoR  HTML preview/summary  Save as draft  Print incomplete  Show only input fields
-------------  -----------  --------------------  -------------  ----------------  ----------------------
-AAAE_019.zip  ok           ok                    ok             MISSING           MISSING
-AAJB_033.zip  ok           ok                    ok             n/a               ok
-
-Details:
-  AAAE_019.zip
-    Print incomplete:      printPartialMode is not set
-    Show only input fields: no FormMetadata fragment step (txtShowOnlyInputFields missing)
-
-1 of 2 packages pass all checks.
-```
-
-### Exit codes
-
-| Code | Meaning |
-|---|---|
-| 0 | Every package passes every check. |
-| 1 | At least one check fails, or a package cannot be read. |
-| 2 | Wrong path, or no ZIP files found. |
-
-### Limits
-
-- The script checks the package files, not what is currently installed on an AEM instance.
-  Re-export the package after changing a form in AEM.
-- It does not check how the form looks or what the generated PDF contains; that still needs
-  a visual review.
-
-## fix_form_features.py
-
-Enables every feature that `check_form_features.py` checks, so that after a successful run
-every check passes. Fixed packages are written as copies to a separate folder; the input ZIPs
-are never modified. Only the affected attributes and nodes change, the rest of each package
-stays byte for byte the same.
-
-### Requirements
-
-Python 3.8 or newer, standard library only. Keep the repository layout as it is: the script
-uses `check_form_features.py` next to it to re-check every fixed package, and the structural
-fixes in `vendor/`.
-
-### What it changes
-
-| Feature | Change |
-|---|---|
-| HTML preview/summary | A missing summary step is built: a `summaryPanel` step before the preview step, holding the summary component, with the form's own `doroptionsubs` and metadata controls moved into it. The toolbar's old preview button is removed and the Next button fills the summary. |
-| Redacto DoR | Sets `redactoSummary="true"` in the form metadata. |
-| Save as draft | Adds `ajila-forms-ubs-menu-option-save` to the form metadata `menuOptions`. |
-| Print incomplete | Sets `printPartialMode="true"` in the form metadata, on Germany forms only. |
-| Show only input fields | Inserts the FormMetadata fragment as the first, hidden wizard step, or brings an existing one to that position and shape. |
-
-The summary step and the FormMetadata step are built by the same code the
-ajila-forms-conversion-feedback sweeps use (`summary-step-redacto`, `formmetadata-step`),
-copied unchanged into `vendor/`. See [vendor/README.md](vendor/README.md).
-
-### Usage
-
-```bash
 python3 fix_form_features.py path/to/packages --out path/to/fixed
-python3 fix_form_features.py path/to/packages --dry-run
 ```
+
+The path can be a single ZIP or a folder; subfolders are searched too. Only packages that
+needed a change are written to the output folder.
 
 | Option | Effect |
 |---|---|
 | `--out FOLDER` | Write the fixed packages to this folder. Must not be the input folder. |
-| `--dry-run` | Only report what would change, write nothing. |
-| `--json` | Print JSON instead of text. |
+| `--dry-run` | Only report, write nothing. Use this to check packages without fixing them. |
+| `--csv report.csv` | Also write the report to a CSV file. |
+| `-v`, `--verbose` | List every change made. |
+| `--json` | Print JSON instead of the table. |
 
-Exactly one of `--out` and `--dry-run` is required. Only packages that changed are written.
+Exactly one of `--out` and `--dry-run` is required.
 
-### Output
+### Report
 
-One block per package with its status and what changed:
+One row per package and feature:
 
 ```
-BlueprintFormsPackage_AAGS.zip  [FIXED]
-    summary        summary step: panel, preview-button, hook, redacto, rename:metadataTextDraw
-    input_fields   inserted FormMetadata step
-    metadata       menuOptions: not set -> "[ajila-forms-ubs-menu-option-save]"
-    metadata       printPartialMode: not set -> "true"
-    written: fixed/BlueprintFormsPackage_AAGS.zip
+Package                         Redacto DoR  HTML preview/summary  Save as draft  Print incomplete  Show only input fields  Result
+------------------------------  -----------  --------------------  -------------  ----------------  ----------------------  ------
+AAAE_019.zip                    ok           ok                    ok             fixed             fixed                   FIXED
+AAJB_033.zip                    ok           ok                    ok             n/a               ok                      OK
+BlueprintFormsPackage_AAGS.zip  fixed        fixed                 fixed          fixed             fixed                   FIXED
+broken.zip                      -            -                     -              -                 -                       ERROR
+
+Errors:
+  broken.zip: File is not a zip file
+
+4 packages: 1 error, 2 fixed, 1 ok
 ```
 
-Status values: `FIXED` (changed and written), `OK` (nothing to do), `ERROR` (the package could
-not be read, could not be fixed, or the fixed copy failed its re-check; nothing is written for
-it, and the message says why).
+| Value | Meaning |
+|---|---|
+| `ok` | The feature was already there. |
+| `fixed` | The feature was missing and has been fixed. |
+| `n/a` | The feature does not apply to this form. |
+| `FAILED` | The feature could not be fixed. |
+
+Result `FIXED` means the package was changed and written, `OK` means nothing needed to change,
+and `ERROR` means the package could not be read or fixed; nothing is written for it and the
+reason is listed under "Errors". Every fixed package is read back and checked again before it
+counts as fixed.
 
 ### Exit codes
 
 | Code | Meaning |
 |---|---|
-| 0 | Every package passes every check after fixing. |
+| 0 | Every package has every feature after fixing. |
 | 1 | At least one package could not be fixed. |
 | 2 | Wrong path, no ZIP files found, or `--out`/`--dry-run` missing. |
 
@@ -162,3 +95,6 @@ Install the fixed packages through AEM Package Manager and look at a few forms:
 - the summary step lists the entered values before submitting,
 - on Germany forms the "Incomplete form mode" toggle appears in the header, and Download in
   that mode produces the PDF.
+
+The script checks the package files only. It does not check how a form looks or what the
+generated PDF contains.
