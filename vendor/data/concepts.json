@@ -1,0 +1,722 @@
+{
+  "_comment": "How a concept is worded per language. `noun` is what a rule writes; `variants` are the spellings that identify the concept in existing text. `patterns` is how an Add button phrases its label. Data, not code: edited here, not in Python.",
+  "patterns": {
+    "en": "Add {}",
+    "de": "{} hinzufügen",
+    "it": "Aggiungere {}",
+    "es": "Añadir {}"
+  },
+  "add_only": {
+    "en": "Add",
+    "de": "Hinzufügen",
+    "it": "Aggiungere",
+    "es": "Añadir"
+  },
+  "concepts": {
+    "client": {
+      "en": {
+        "noun": "client",
+        "variants": [
+          "client"
+        ]
+      },
+      "de": {
+        "noun": "Kunde",
+        "variants": [
+          "kunde",
+          "kunden"
+        ]
+      },
+      "it": {
+        "noun": "cliente",
+        "variants": [
+          "cliente"
+        ]
+      },
+      "es": {
+        "noun": "cliente",
+        "variants": [
+          "datos del cliente",
+          "cliente"
+        ]
+      }
+    },
+    "customer": {
+      "en": {
+        "noun": "Customer",
+        "variants": []
+      },
+      "de": {
+        "noun": "Kunde",
+        "variants": []
+      },
+      "it": {
+        "noun": "Cliente",
+        "variants": []
+      },
+      "es": {
+        "noun": "Cliente",
+        "variants": []
+      }
+    },
+    "legal_representative": {
+      "en": {
+        "noun": "legal representative",
+        "variants": [
+          "legal representative"
+        ]
+      },
+      "de": {
+        "noun": "Gesetzlicher Vertreter",
+        "variants": [
+          "gesetzlichen vertreter",
+          "gesetzlicher vertreter"
+        ]
+      },
+      "it": {
+        "noun": "legale rappresentante",
+        "variants": [
+          "legale rappresentante",
+          "legale i rappresentante i"
+        ]
+      },
+      "es": {
+        "noun": "representante legal",
+        "variants": []
+      }
+    },
+    "authorized_representative": {
+      "en": {
+        "noun": "authorized representative",
+        "variants": [
+          "authorized representative"
+        ]
+      },
+      "de": {
+        "noun": "Vertretungsberechtigter",
+        "variants": [
+          "vertretungsberechtigte",
+          "vertretungsberechtigten"
+        ]
+      },
+      "it": {
+        "noun": "rappresentante autorizzato",
+        "variants": [
+          "rappresentante autorizzato"
+        ]
+      },
+      "es": {
+        "noun": "representante autorizado",
+        "variants": []
+      }
+    },
+    "attorney": {
+      "en": {
+        "noun": "attorney",
+        "variants": [
+          "attorney"
+        ]
+      },
+      "de": {
+        "noun": "Bevollmächtigter",
+        "variants": [
+          "bevollmacht",
+          "bevollmächtigten",
+          "bevollmächtigter"
+        ]
+      },
+      "it": {
+        "noun": "procuratore",
+        "variants": [
+          "procuratore"
+        ]
+      },
+      "es": {
+        "noun": "apoderado",
+        "variants": []
+      }
+    },
+    "legal_guardian": {
+      "en": {
+        "noun": "legal guardian",
+        "variants": [
+          "legal guardian"
+        ]
+      },
+      "de": {
+        "noun": "Gesetzlicher Vertreter",
+        "variants": [
+          "gesetzlich",
+          "gesetzlichen vertreter",
+          "gesetzlicher vertreter"
+        ]
+      },
+      "it": {
+        "noun": "tutore legale",
+        "variants": [
+          "tutore"
+        ]
+      },
+      "es": {
+        "noun": "tutor legal",
+        "variants": []
+      }
+    },
+    "account_holder": {
+      "en": {
+        "noun": "account holder",
+        "variants": [
+          "account holder"
+        ]
+      },
+      "de": {
+        "noun": "Kontoinhaber",
+        "variants": [
+          "kontoinhaber"
+        ]
+      },
+      "it": {
+        "noun": "titolare del conto",
+        "variants": [
+          "titolare del conto"
+        ]
+      },
+      "es": {
+        "noun": "titular de la cuenta",
+        "variants": []
+      }
+    },
+    "custody_account_holder": {
+      "en": {
+        "noun": "custody account holder",
+        "variants": [
+          "custody account holder"
+        ]
+      },
+      "de": {
+        "noun": "Depotinhaber",
+        "variants": [
+          "depotinhaber"
+        ]
+      },
+      "it": {
+        "noun": "titolare del deposito",
+        "variants": [
+          "titolare del deposito"
+        ]
+      },
+      "es": {
+        "noun": "titular del depósito",
+        "variants": []
+      }
+    },
+    "banking_relationship": {
+      "en": {
+        "noun": "banking relationship",
+        "variants": [
+          "banking relationship"
+        ]
+      },
+      "de": {
+        "noun": "Bankbeziehung",
+        "variants": [
+          "bankbeziehung"
+        ]
+      },
+      "it": {
+        "noun": "relazione bancaria",
+        "variants": [
+          "relazione bancaria"
+        ]
+      },
+      "es": {
+        "noun": "relación bancaria",
+        "variants": []
+      }
+    },
+    "authorized_person": {
+      "en": {
+        "noun": "authorized person",
+        "variants": [
+          "authorized person",
+          "authorized user",
+          "authorized signat"
+        ]
+      },
+      "de": {
+        "noun": "Bevollmächtigter",
+        "variants": [
+          "bevollmächtigten",
+          "bevollmächtigter"
+        ]
+      },
+      "it": {
+        "noun": "persona autorizzata",
+        "variants": [
+          "persona autorizzata"
+        ]
+      },
+      "es": {
+        "noun": "persona autorizada",
+        "variants": []
+      }
+    },
+    "beneficial_owner": {
+      "en": {
+        "noun": "beneficial owner",
+        "variants": [
+          "beneficial owner"
+        ]
+      },
+      "de": {
+        "noun": "Wirtschaftlich Berechtigter",
+        "variants": [
+          "wirtschaftlich",
+          "wirtschaftlich berechtigten",
+          "wirtschaftlich berechtigter"
+        ]
+      },
+      "it": {
+        "noun": "titolare effettivo",
+        "variants": [
+          "titolare effet"
+        ]
+      },
+      "es": {
+        "noun": "titular real",
+        "variants": []
+      }
+    },
+    "depositor": {
+      "en": {
+        "noun": "depositor",
+        "variants": [
+          "depositor"
+        ]
+      },
+      "de": {
+        "noun": "Deponent",
+        "variants": [
+          "deponent",
+          "deponenten"
+        ]
+      },
+      "it": {
+        "noun": "depositante",
+        "variants": [
+          "depositante"
+        ]
+      },
+      "es": {
+        "noun": "depositante",
+        "variants": []
+      }
+    },
+    "account": {
+      "en": {
+        "noun": "account",
+        "variants": [
+          "account"
+        ]
+      },
+      "de": {
+        "noun": "Konto",
+        "variants": [
+          "konto"
+        ]
+      },
+      "it": {
+        "noun": "conto",
+        "variants": [
+          "conto"
+        ]
+      },
+      "es": {
+        "noun": "cuenta",
+        "variants": []
+      }
+    },
+    "custody_account": {
+      "en": {
+        "noun": "custody account",
+        "variants": [
+          "custody account"
+        ]
+      },
+      "de": {
+        "noun": "Depot",
+        "variants": [
+          "depot"
+        ]
+      },
+      "it": {
+        "noun": "deposito",
+        "variants": [
+          "deposito"
+        ]
+      },
+      "es": {
+        "noun": "depósito",
+        "variants": []
+      }
+    },
+    "heir": {
+      "en": {
+        "noun": "heir",
+        "variants": [
+          "heir"
+        ]
+      },
+      "de": {
+        "noun": "Erbe",
+        "variants": [
+          "erbe",
+          "erben"
+        ]
+      },
+      "it": {
+        "noun": "erede",
+        "variants": [
+          "erede"
+        ]
+      },
+      "es": {
+        "noun": "heredero",
+        "variants": []
+      }
+    },
+    "account_relationship": {
+      "en": {
+        "noun": "relationship",
+        "variants": []
+      },
+      "de": {
+        "noun": "Beziehung",
+        "variants": []
+      },
+      "it": {
+        "noun": "rapporto",
+        "variants": [
+          "rapporto"
+        ]
+      },
+      "es": {
+        "noun": "relación",
+        "variants": []
+      }
+    },
+    "duplicate": {
+      "en": {
+        "noun": "duplicate",
+        "variants": [
+          "duplicate"
+        ]
+      },
+      "de": {
+        "noun": "Duplikat",
+        "variants": [
+          "duplikat"
+        ]
+      },
+      "it": {
+        "noun": "duplicato",
+        "variants": []
+      },
+      "es": {
+        "noun": "duplicado",
+        "variants": []
+      }
+    },
+    "financial_service_provider": {
+      "en": {
+        "noun": "financial service provider",
+        "variants": [
+          "financial service provider",
+          "financial services provider"
+        ]
+      },
+      "de": {
+        "noun": "Finanzdienstleister",
+        "variants": [
+          "finanzdienstleister"
+        ]
+      },
+      "it": {
+        "noun": "prestatore di servizi finanziari",
+        "variants": []
+      },
+      "es": {
+        "noun": "proveedor de servicios financieros",
+        "variants": []
+      }
+    },
+    "third_party": {
+      "en": {
+        "noun": "third party",
+        "variants": [
+          "third party"
+        ]
+      },
+      "de": {
+        "noun": "Dritte Partei",
+        "variants": [
+          "dritte partei"
+        ]
+      },
+      "it": {
+        "noun": "terza parte",
+        "variants": []
+      },
+      "es": {
+        "noun": "tercero",
+        "variants": []
+      }
+    },
+    "grantor": {
+      "en": {
+        "noun": "principal",
+        "variants": []
+      },
+      "de": {
+        "noun": "Vollmachtgeber",
+        "variants": [
+          "vollmachtgeber"
+        ]
+      },
+      "it": {
+        "noun": "mandante",
+        "variants": []
+      },
+      "es": {
+        "noun": "poderdante",
+        "variants": []
+      }
+    },
+    "spouse": {
+      "en": {
+        "noun": "spouse",
+        "variants": [
+          "spouse"
+        ]
+      },
+      "de": {
+        "noun": "Ehepartner",
+        "variants": [
+          "ehepartner"
+        ]
+      },
+      "it": {
+        "noun": "coniuge",
+        "variants": [
+          "coniuge"
+        ]
+      },
+      "es": {
+        "noun": "cónyuge",
+        "variants": []
+      }
+    },
+    "child": {
+      "en": {
+        "noun": "child",
+        "variants": []
+      },
+      "de": {
+        "noun": "Kind",
+        "variants": []
+      },
+      "it": {
+        "noun": "figlio",
+        "variants": [
+          "figlio",
+          "figli"
+        ]
+      },
+      "es": {
+        "noun": "hijo",
+        "variants": []
+      }
+    },
+    "email_address": {
+      "en": {
+        "noun": "e-mail address",
+        "variants": [
+          "e-mail address",
+          "email address"
+        ]
+      },
+      "de": {
+        "noun": "E-Mail-Adresse",
+        "variants": [
+          "e-mail-adresse"
+        ]
+      },
+      "it": {
+        "noun": "indirizzo e-mail",
+        "variants": [
+          "indizzi e-mail",
+          "indirizzi e-mail",
+          "indirizzo e-mail"
+        ]
+      },
+      "es": {
+        "noun": "dirección de correo electrónico",
+        "variants": []
+      }
+    },
+    "domain_name": {
+      "en": {
+        "noun": "domain name",
+        "variants": [
+          "domain name"
+        ]
+      },
+      "de": {
+        "noun": "Domainname",
+        "variants": [
+          "domainname"
+        ]
+      },
+      "it": {
+        "noun": "nome di dominio",
+        "variants": [
+          "nomi di dominio",
+          "nome di dominio"
+        ]
+      },
+      "es": {
+        "noun": "nombre de dominio",
+        "variants": []
+      }
+    },
+    "advisory_agreement": {
+      "en": {
+        "noun": "advisory agreement",
+        "variants": [
+          "advisory agreement"
+        ]
+      },
+      "de": {
+        "noun": "Beratungsvertrag",
+        "variants": [
+          "beratungsvertrag"
+        ]
+      },
+      "it": {
+        "noun": "contratto di consulenza",
+        "variants": [
+          "contratto di consulenza"
+        ]
+      },
+      "es": {
+        "noun": "contrato de asesoramiento",
+        "variants": []
+      }
+    },
+    "iban": {
+      "en": {
+        "noun": "IBAN",
+        "variants": [
+          "iban"
+        ]
+      },
+      "de": {
+        "noun": "IBAN",
+        "variants": [
+          "iban"
+        ]
+      },
+      "it": {
+        "noun": "IBAN",
+        "variants": [
+          "iban"
+        ]
+      },
+      "es": {
+        "noun": "IBAN",
+        "variants": [
+          "iban"
+        ]
+      }
+    },
+    "broker": {
+      "en": {
+        "noun": "broker",
+        "variants": [
+          "broker"
+        ]
+      },
+      "de": {
+        "noun": "Broker",
+        "variants": [
+          "broker"
+        ]
+      },
+      "it": {
+        "noun": "broker",
+        "variants": [
+          "broker"
+        ]
+      },
+      "es": {
+        "noun": "broker",
+        "variants": [
+          "broker"
+        ]
+      }
+    },
+    "signature": {
+      "en": {
+        "noun": "signature",
+        "variants": [
+          "signature"
+        ]
+      },
+      "de": {
+        "noun": "Unterschrift",
+        "variants": [
+          "unterschrift"
+        ]
+      },
+      "it": {
+        "noun": "firma",
+        "variants": [
+          "firma"
+        ]
+      },
+      "es": {
+        "noun": "firma",
+        "variants": []
+      }
+    },
+    "responsible_person": {
+      "en": {
+        "noun": "responsible person",
+        "variants": [
+          "responsible person",
+          "person responsible"
+        ]
+      },
+      "de": {
+        "noun": "Verantwortliche Person",
+        "variants": [
+          "verantwortliche person",
+          "verantwortlichen person",
+          "verantwortlicher"
+        ]
+      },
+      "it": {
+        "noun": "persona responsabile",
+        "variants": [
+          "persona responsabile"
+        ]
+      },
+      "es": {
+        "noun": "persona responsable",
+        "variants": [
+          "persona responsable"
+        ]
+      }
+    }
+  }
+}
